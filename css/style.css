@@ -1,0 +1,48 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+
+  text-align: center;
+}
+
+#main.loading .summary {
+  display: none;
+}
+
+#main {
+  background-color: #14080E;
+  height: 100vh;
+  padding: 6rem 1rem 1rem 1rem;
+  box-sizing: border-box;
+
+  transition: all ease 0.5s;
+}
+
+#main.positive {
+  background-color: #79B473;
+}
+
+#main.negative {
+  background-color: #AC3931;
+}
+
+.question {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+#answer {
+  font-size: 4rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.summary {
+  margin-top: 2rem;
+}
+
+p {
+  margin: 0;
+}

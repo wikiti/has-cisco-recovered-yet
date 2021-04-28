@@ -1,6 +1,24 @@
-var targetPrice = 48.1;
-var symbol = 'CSCO';
-var stocks = new Stocks('P7UHM0LC4MTDBVT7');
+const api = new API('669413426e2966f4fffeff7a5cf60900');
+
+const stockList = [
+  {
+    symbol: 'CSCO',
+    name: 'CISCO',
+    domainName: 'cisco',
+    targetPrice: 48.1,
+    currency: '$'
+  },
+  {
+    symbol: 'CDR.XWAR',
+    name: 'CD PROJEKT RED',
+    domainName: 'cdprojekt',
+    targetPrice: 308.9,
+    currency: 'zł'
+  }
+];
+const defaultStock = stockList[stockList.length - 1];
+
+const stock = stockList.find(st => location.hostname.includes(st.domainName)) || defaultStock;
 
 function stopLoading() {
   document.getElementById('main').classList.remove('loading');
@@ -11,12 +29,12 @@ function positiveMessage() {
 }
 
 function negativeMessage() {
-  var messages = ['No', 'Nope', 'Niet', 'Nain', 'Ne', 'Non'];
+  const messages = ['No', 'Nope', 'Niet', 'Nain', 'Ne', 'Non'];
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
 function pricify(value) {
-  return `${value.toFixed(2)}$`;
+  return `${value.toFixed(2)}${stock.currency}`;
 }
 
 function percentify(value) {
@@ -24,11 +42,11 @@ function percentify(value) {
 }
 
 function answerQuestion(quote) {
-  var currentPrice = quote.open;
-  var rootElement = document.getElementById('main');
-  var messageElement = document.getElementById('answer');
+  const currentPrice = quote.close;
+  const rootElement = document.getElementById('main');
+  const messageElement = document.getElementById('answer');
 
-  if (currentPrice >= targetPrice) {
+  if (currentPrice >= stock.targetPrice) {
     messageElement.textContent = positiveMessage();
     rootElement.classList.add('positive');
   }
@@ -37,14 +55,20 @@ function answerQuestion(quote) {
     rootElement.classList.add('negative');
   }
 
-  var percentage = 100.0 * (currentPrice - targetPrice) / targetPrice;
+  const percentage = 100.0 * (currentPrice - stock.targetPrice) / stock.targetPrice;
   document.getElementById('percentage').textContent = percentify(percentage);
 
   document.getElementById('current').textContent = pricify(currentPrice);
-  document.getElementById('target').textContent = pricify(targetPrice);
+  document.getElementById('target').textContent = pricify(stock.targetPrice);
 }
 
-stocks.timeSeries({ symbol, interval: '1min', amount: 1 }).then((results) => {
-  answerQuestion(results[0]);
+api.quote(stock.symbol).then(quote => {
+  console.debug('API results: ', quote)
+
+  answerQuestion(quote);
   stopLoading();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('stock-name').textContent = stock.name;
 });

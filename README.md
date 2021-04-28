@@ -1,5 +1,9 @@
-# Has CISCO recovered yet?
+# Stonks check
 
-A basic web application to check if CISCO has recovered from its [worst day in nearly a decade](https://www.marketwatch.com/story/cisco-stock-faces-worst-day-in-nearly-a-decade-as-analysts-say-cost-cuts-signal-coronavirus-as-long-term-overhang-2020-08-13).
+A basic web application to check if some stock values has already recovered, using
+[MakerStack](https://marketstack.com/)
 
-You may check the live website [here](https://hasciscorecoveredyet.danielherzog.es).
+You may check the live websites here:
+
+- [Has CISCO recovered yet?](https://hasciscorecoveredyet.danielherzog.es)
+- [Has CD Projekt Red recovered yet?](https://hascdprojektrecoveredyet.danielherzog.es)

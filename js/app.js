@@ -1,4 +1,4 @@
-const api = new API('669413426e2966f4fffeff7a5cf60900');
+const api = new API();
 
 const stockList = [
   {

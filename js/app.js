@@ -14,6 +14,13 @@ const stockList = [
     domainName: 'cdprojekt',
     targetPrice: 308.9,
     currency: 'zł'
+  },
+  {
+    symbol: 'BB',
+    name: 'BlackBerry',
+    domainName: 'bb',
+    targetPrice: 16.94,
+    currency: '$'
   }
 ];
 const defaultStock = stockList[stockList.length - 1];
